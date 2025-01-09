@@ -1,0 +1,25 @@
+<UI version="4.0" >
+ <class>MyFirstProClass</class>
+ <widget class="QWidget" name="MyFirstProClass" >
+  <property name="objectName" >
+   <string notr="true">MyFirstProClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MyFirstPro</string>
+  </property>$centralwidget$
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="MyFirstPro.qrc"/>
+ </resources>
+ <connections/>
+</UI>
