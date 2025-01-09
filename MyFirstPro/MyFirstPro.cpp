@@ -28,7 +28,7 @@ void MyFirstPro::test1()
     //设置窗口标题
     this->setWindowTitle("My First Project");
     //限制窗口大小
-    this->setFixedSize(600, 400);
-
-    
+    this->setFixedSize(600, 400); 
 }
+
+
