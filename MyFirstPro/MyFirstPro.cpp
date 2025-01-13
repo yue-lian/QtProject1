@@ -79,3 +79,14 @@ void Test02::lambdaTest()
 }
 
 
+Test03::Test03(QWidget* parent) :QMainWindow(parent) {
+
+    //QMainWindow* mainWindow = new QMainWindow(parent);
+
+    QPushButton* button = new QPushButton("测试三的按钮", this);
+
+    this->setCentralWidget(button);
+
+    this->setWindowTitle("这是父窗口");
+}
+

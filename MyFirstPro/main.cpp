@@ -24,10 +24,13 @@ int main(int argc, char *argv[])
     // [=]()mutable int{}
     //[局部变量捕获列表]\(函数参数)、函数额外属性设置opt、函数返回值->retype、函数主体}
     
-    Test02 t02;
-    t02.lambdaTest();
-    t02.show();
+    //Test02 t02;
+    //t02.lambdaTest();
+    //t02.show();
 
+    //菜单栏
+    Test03 t03;
+    t03.show();
     return a.exec();
 }
 

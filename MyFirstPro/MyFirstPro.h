@@ -9,6 +9,12 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QApplication>
+#include <QMenuBar>
+#include <QMenu>
+#include <QKeySequence>
+#include <QMainWindow>
+
+
 //1.
 class MyFirstPro : public QWidget
 {
@@ -50,6 +56,18 @@ public:
     void lambdaTest();
 public:
     QWidget* window;
+};
+
+//4.QMainWindow
+//4.1菜单栏
+class Test03 :public QMainWindow
+{
+public:
+    Test03(QWidget* parent = nullptr);
+
+    //Test03();
+
+
 };
 
 
