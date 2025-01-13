@@ -1,15 +1,32 @@
 ﻿#include "MyFirstPro.h"
 #include <QtWidgets/QApplication>
+#include <windows.h>
 
 int main(int argc, char *argv[])
 {
+    // 设置控制台输出为 UTF-8
+    //SetConsoleOutputCP(CP_UTF8);
+
     QApplication a(argc, argv);
-    MyFirstPro w;
+
+    //MyFirstPro w;
+    ////调用成员函数
+    //w.test1();
+    ////使默认不可见的窗口可见
+    //w.show();
+
+    //Test01 t01;
+    //t01.test2();
+    //t01.show();
+
+    //Lambda表达式
+    //用于定义匿名的函数对象
+    // [=]()mutable int{}
+    //[局部变量捕获列表]\(函数参数)、函数额外属性设置opt、函数返回值->retype、函数主体}
     
-    //调用成员函数
-    w.test1();
-    //使默认不可见的窗口可见
-    w.show();
+    Test02 t02;
+    t02.lambdaTest();
+    t02.show();
 
     return a.exec();
 }
