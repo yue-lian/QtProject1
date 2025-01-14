@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>C:/Users/senlz/Pictures/icon/open1.png</file>
+        <file>C:/Users/senlz/Pictures/icon/open.svg</file>
+        <file>C:/Users/senlz/Pictures/icon/paste.svg</file>
+        <file>C:/Users/senlz/Pictures/icon/happyFruit.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="file-open.png">C:/Users/senlz/Pictures/icon/file-open.png</file>
+        <file alias="file-save.png">C:/Users/senlz/Pictures/icon/file-save.png</file>
+    </qresource>
+</RCC>

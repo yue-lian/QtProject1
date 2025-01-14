@@ -107,6 +107,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <QtRcc Include="MyFirstPro.qrc" />
+    <QtRcc Include="Resource.qrc" />
     <QtUic Include="MyFirstPro.ui" />
     <QtMoc Include="MyFirstPro.h" />
     <ClCompile Include="MyFirstPro.cpp" />

@@ -29,8 +29,18 @@ int main(int argc, char *argv[])
     //t02.show();
 
     //菜单栏
-    Test03 t03;
-    t03.show();
+    //Test03 t03;
+    ////消息对话框
+    //t03.test1();
+    ////标准文件对话框
+    //t03.show();
+
+    //消息对话框
+    Test04 t04;
+    t04.textEditFunc();
+    t04.show();
+
+
     return a.exec();
 }
 
