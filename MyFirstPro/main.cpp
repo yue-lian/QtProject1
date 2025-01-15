@@ -1,14 +1,37 @@
-﻿#include "MyFirstPro.h"
+﻿//main.cpp
 #include <QtWidgets/QApplication>
-#include <windows.h>
+#include <testMode.h>
+//#include "MyFirstPro.h"
 
 int main(int argc, char *argv[])
 {
-    // 设置控制台输出为 UTF-8
-    //SetConsoleOutputCP(CP_UTF8);
 
     QApplication a(argc, argv);
 
+    // 设置控制台输出为 UTF-8
+    //SetConsoleOutputCP(CP_UTF8);
+    
+    //1.15--
+    TestMode tM;
+    tM.test();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //1.9--1.14
+            
     //MyFirstPro w;
     ////调用成员函数
     //w.test1();
@@ -36,9 +59,11 @@ int main(int argc, char *argv[])
     //t03.show();
 
     //消息对话框
-    Test04 t04;
-    t04.textEditFunc();
-    t04.show();
+
+    //Test04 t04;
+    //t04.textEditFunc();
+    //t04.show();
+
 
 
     return a.exec();

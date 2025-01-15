@@ -1,7 +1,5 @@
-﻿#include "MyFirstPro.h"
-
-
-
+﻿//MyFirstPro.cpp
+#include "MyFirstPro.h"
 
 MyFirstPro::MyFirstPro(QWidget *parent)
     : QWidget(parent)
@@ -335,6 +333,7 @@ void Test04::openFile()
         {
             QMessageBox::warning(this, tr("Read File"),
                 tr("Cannot open file:\n%1").arg(path));
+            //文件无法打开直接返回，不影响后续代码
             return;
         }
         QTextStream in(&file);
@@ -347,8 +346,43 @@ void Test04::openFile()
     }
 }
 
+/*
+* saveFile()
+* 
+1.写入本地
+QFileDialog::getSaveFileName(
+    QWidget *parent = nullptr,//对话框的父窗口
+    const QString &caption = QString(),//对话框标题名称
+    const QString &dir = QString(),//初始路径
+    const QString &filter = QString(),//过滤器
+    QFileDialog::Options options = QFileDialog::Options()//(可选)支持显示隐藏文件或多选文件
+)
+
+2.通过if语句根据该文件是否存在进行选择执行
+
+2.1 文件存在
+    QFile类创建一个对象，后面可以通过实例化的open方法打开文件
+    file.open(QIODevice::WriteOnly | QIODevice::Text)
+        尝试以特定模式打开文件
+        参数
+            QIODevice::WriteOnly
+            文件以写入模式打开。如果文件已存在，将清空文件内容。
+            如果文件不存在，将创建新文件。
+            QIODevice::Text
+            以文本模式打开文件，意味着在处理换行符时，
+            Qt 会进行自动转换（例如在 Windows 上 \n 转换为 \r\n）。
+        返回值!file.open()为false代表没有文件打开失败
+    返回false通过QMessageBox类的警告方法warning，弹出文字提示框
+
+2.2 文件不存在
+    直接弹出警告框
+    QMessageBox::warning();
+
+
+*/
 void Test04::saveFile()
 {
+    //将文件写入到本地
     QString path = QFileDialog::getSaveFileName(this,
         tr("OpenFile"), ".", tr("TextFiles(*.txt)"));
     if (!path.isEmpty()) {

@@ -1,4 +1,5 @@
-﻿#ifndef _OI_MYFIRSTPRO_MYFIRSTPRO_H
+﻿//MyFirstPro.cpp
+#ifndef _OI_MYFIRSTPRO_MYFIRSTPRO_H
 #define _OI_MYFIRSTPRO_MYFIRSTPRO_H
 
 #include <QtWidgets/QWidget>
@@ -8,7 +9,6 @@
 #include "QObject"
 #include <QVBoxLayout>
 #include <QLabel>
-#include <QApplication>
 #include <QMenuBar>
 #include <QMenu>
 #include <QKeySequence>
@@ -23,6 +23,7 @@
 #include <QDialog>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <windows.h>
 
 
 //1.

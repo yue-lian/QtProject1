@@ -29,12 +29,6 @@
     <QtUic Include="MyFirstPro.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="MyFirstPro.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <ClCompile Include="MyFirstPro.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <QtRcc Include="Resource.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
@@ -43,8 +37,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="TestMode.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>
