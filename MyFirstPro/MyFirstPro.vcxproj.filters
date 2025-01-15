@@ -40,12 +40,18 @@
     <ClCompile Include="TestMode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyFirstPro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestMode.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MyFirstPro.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

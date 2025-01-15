@@ -1,26 +1,58 @@
 ﻿//main.cpp
 #include <QtWidgets/QApplication>
-#include <testMode.h>
-//#include "MyFirstPro.h"
+#include <TestMode.h>
+#include "MyFirstPro.h"
 
 int main(int argc, char *argv[])
 {
-
     QApplication a(argc, argv);
 
     // 设置控制台输出为 UTF-8
     //SetConsoleOutputCP(CP_UTF8);
-    
+
     //1.15--
-    TestMode tM;
-    tM.test();
 
+    //测试
+    //TestMode tM;
+    //tM.show();
 
+    //七、布局
+    //水平布局
+    //LayoutTest layoutTest1;
+    //layoutTest1.QHBoxLayoutTest();
+    //layoutTest1.show();
 
+    //垂直布局
+    //LayoutTest layoutTest2;
+    //layoutTest2.QVBoxLayoutTest();
+    //layoutTest2.show();
+    
+    //网格布局
+    //LayoutTest layoutTest3;
+    //layoutTest3.QGridLayoutTest();
+    //layoutTest3.show();
 
+    //八、常用控件
+    //8.1 QLabel
+    //QLabelTest labelTest;
+    
+    //显示文字
+    //labelTest.setTextTest();
 
+    //显示图片
+    //labelTest.setImageTest();
 
+    //显示动画
+    //labelTest.setMovieTest();
 
+    //labelTest.show();
+
+    //8.2 QLineEdit
+
+    //显示文本框并获取
+    QlineEditTest lineEdit;
+    lineEdit.show();
+    
 
 
 

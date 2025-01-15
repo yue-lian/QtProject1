@@ -113,6 +113,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MyFirstPro.cpp" />
     <ClCompile Include="TestMode.cpp" />
     <QtRcc Include="MyFirstPro.qrc" />
     <QtRcc Include="Resource.qrc" />
@@ -124,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestMode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="MyFirstPro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -9,4 +9,7 @@
         <file alias="file-open.png">C:/Users/senlz/Pictures/icon/file-open.png</file>
         <file alias="file-save.png">C:/Users/senlz/Pictures/icon/file-save.png</file>
     </qresource>
+    <qresource prefix="/gif">
+        <file alias="cat">C:/Users/senlz/Pictures/gif/cat.gif</file>
+    </qresource>
 </RCC>
