@@ -57,14 +57,17 @@ int main(int argc, char *argv[])
     //widget.show();
     
     //九、Qt消息事件机制
-    //9.2
 
-    EventTest* label = new EventTest;
-    label->setWindowTitle("MouseEvent Demo");
-    label->resize(300, 200);
-    label->show();
+    //9.2事件处理函数
+    //EventTest* label = new EventTest;
+    //label->setWindowTitle("MouseEvent Demo");
+    //label->resize(300, 200);
+    //label->show();
 
-
+    //9.3事件分发函数
+    EventDistributeFunctionTest edft;
+    edft.setWindowTitle("Event Handling Demo");
+    edft.show();
 
 
 

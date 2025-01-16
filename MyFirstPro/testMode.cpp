@@ -208,3 +208,36 @@ void EventTest::mouseReleaseEvent(QMouseEvent* event)
 	this->setText(msg);
 }
 
+EventDistributeFunctionTest::EventDistributeFunctionTest(QWidget* parent):QWidget(parent)
+{
+	setFixedSize(400, 300);
+}
+
+bool EventDistributeFunctionTest::event(QEvent* event)
+{
+	//处理鼠标按下事件
+	if (event->type() == QEvent::MouseButtonPress) {
+		QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
+		qDebug() << "鼠标被按下：" << mouseEvent->pos();
+		return true;
+	}
+
+	//处理键盘按下事件
+	if (event->type() == QEvent::KeyPress) {
+		QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+		qDebug() << "键盘被按下" << keyEvent->text();
+		return true;
+	}
+
+	//处理绘制事件
+	if (event->type() == QEvent::Paint) {
+		QPaintEvent* paintEvent = static_cast<QPaintEvent*>(event);
+		QPainter painter(this);
+		painter.setPen(Qt::red);
+		painter.drawText(50, 50, "Hello,Event!");
+		return true;//返回true，表示事件已经被处理
+	}
+
+	//如果事件没有被处理，交给基类处理
+	return QWidget::event(event);
+}

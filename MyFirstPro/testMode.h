@@ -21,6 +21,7 @@
 #include <QSpinBox>
 #include <QSlider>
 #include <QPointF>
+#include <QPainter>
 
 
 
@@ -147,10 +148,20 @@ protected:
 	void mousePressEvent(QMouseEvent* event = nullptr);
 	void mouseReleaseEvent(QMouseEvent* event = nullptr);
 
+
 };
 
 //9.3事件分发函数event()
 
+class EventDistributeFunctionTest:public QWidget
+{
+	Q_OBJECT
+
+public:
+	EventDistributeFunctionTest(QWidget* parent = nullptr);
+protected:
+	bool event(QEvent* event)override;
+};
 
 
 
