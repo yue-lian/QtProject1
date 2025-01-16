@@ -48,11 +48,21 @@ int main(int argc, char *argv[])
     //labelTest.show();
 
     //8.2 QLineEdit
-
     //显示文本框并获取
-    QlineEditTest lineEdit;
-    lineEdit.show();
+    //QLineEditTest lineEdit;
+    //lineEdit.show();
     
+    //8.4 自定义控件
+    //SmallWidget widget(nullptr);
+    //widget.show();
+    
+    //九、Qt消息事件机制
+    //9.2
+
+    EventTest* label = new EventTest;
+    label->setWindowTitle("MouseEvent Demo");
+    label->resize(300, 200);
+    label->show();
 
 
 

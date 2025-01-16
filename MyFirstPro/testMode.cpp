@@ -1,4 +1,4 @@
-//TestMode.cpp
+ï»¿//TestMode.cpp
 #include "TestMode.h"
 TestMode::TestMode(QWidget* parent) :QMainWindow(parent) {
 	QMessageBox::warning(this, tr("stop!"), tr("You are winner!!"));
@@ -8,7 +8,7 @@ TestMode::TestMode(QWidget* parent) :QMainWindow(parent) {
 
 LayoutTest::LayoutTest(QWidget* parent):QMainWindow(parent)
 {
-	//´´½¨ÖĞĞÄ²¿¼ş
+	//åˆ›å»ºä¸­å¿ƒéƒ¨ä»¶
 	QWidget* centralWidget = new QWidget(this);
 	setCentralWidget(centralWidget);
 
@@ -16,44 +16,44 @@ LayoutTest::LayoutTest(QWidget* parent):QMainWindow(parent)
 
 void LayoutTest::QHBoxLayoutTest()
 {
-	//´´½¨°´Å¥
+	//åˆ›å»ºæŒ‰é’®
 	QPushButton* button1 = new QPushButton("Button 1", this);
 	QPushButton* button2 = new QPushButton("Button 2", this);
 	QPushButton* button3 = new QPushButton("Button 3", this);
 	QPushButton* button4 = new QPushButton("Button 4", this);
 
-	//´´½¨Ë®Æ½²¼¾Ö
+	//åˆ›å»ºæ°´å¹³å¸ƒå±€
 	QHBoxLayout* layout = new QHBoxLayout();
 
-	//Ïò²¼¾ÖÖĞÌí¼Ó°´Å¥
+	//å‘å¸ƒå±€ä¸­æ·»åŠ æŒ‰é’®
 	layout->addWidget(button1);
 	layout->addWidget(button2);
 	layout->addWidget(button3);
 	layout->addWidget(button4);
 
-	//ÉèÖÃ²¼¾Öµ½ÖĞĞÄ²¿¼ş
+	//è®¾ç½®å¸ƒå±€åˆ°ä¸­å¿ƒéƒ¨ä»¶
 	QWidget* centralWidget = this->centralWidget();
 	centralWidget->setLayout(layout);
 }
 
 void LayoutTest::QVBoxLayoutTest()
 {
-	//´´½¨°´Å¥
+	//åˆ›å»ºæŒ‰é’®
 	QPushButton* button1 = new QPushButton("Button 1", this);
 	QPushButton* button2 = new QPushButton("Button 2", this);
 	QPushButton* button3 = new QPushButton("Button 3", this);
 	QPushButton* button4 = new QPushButton("Button 4", this);
 
-	//´´½¨Ë®Æ½²¼¾Ö
+	//åˆ›å»ºæ°´å¹³å¸ƒå±€
 	QVBoxLayout* layout = new QVBoxLayout();
 
-	//Ïò²¼¾ÖÖĞÌí¼Ó°´Å¥
+	//å‘å¸ƒå±€ä¸­æ·»åŠ æŒ‰é’®
 	layout->addWidget(button1);
 	layout->addWidget(button2);
 	layout->addWidget(button3);
 	layout->addWidget(button4);
 
-	//ÉèÖÃ²¼¾Öµ½ÖĞĞÄ²¿¼ş
+	//è®¾ç½®å¸ƒå±€åˆ°ä¸­å¿ƒéƒ¨ä»¶
 	QWidget* centralWidget = this->centralWidget();
 	centralWidget->setLayout(layout);
 
@@ -61,22 +61,22 @@ void LayoutTest::QVBoxLayoutTest()
 
 void LayoutTest::QGridLayoutTest()
 {
-	//´´½¨°´Å¥
+	//åˆ›å»ºæŒ‰é’®
 	QPushButton* button1 = new QPushButton("Button 1", this);
 	QPushButton* button2 = new QPushButton("Button 2", this);
 	QPushButton* button3 = new QPushButton("Button 3", this);
 	QPushButton* button4 = new QPushButton("Button 4", this);
 
-	//´´½¨Ë®Æ½²¼¾Ö
+	//åˆ›å»ºæ°´å¹³å¸ƒå±€
 	QGridLayout* layout = new QGridLayout();
 
-	//Ïò²¼¾ÖÖĞÌí¼Ó°´Å¥
+	//å‘å¸ƒå±€ä¸­æ·»åŠ æŒ‰é’®
 	layout->addWidget(button1,0,0);
 	layout->addWidget(button2);
 	layout->addWidget(button3);
 	layout->addWidget(button4,1,1);
 
-	//ÉèÖÃ²¼¾Öµ½ÖĞĞÄ²¿¼ş
+	//è®¾ç½®å¸ƒå±€åˆ°ä¸­å¿ƒéƒ¨ä»¶
 	QWidget* centralWidget = this->centralWidget();
 	centralWidget->setLayout(layout);
 
@@ -91,9 +91,9 @@ void QLabelTest::setTextTest()
 {
 	QLabel* label = new QLabel(this);
 
-	label->setText("HelloWorld£¡");
+	label->setText("HelloWorldï¼");
 
-	//label->setText("<h1><a href=\"https://www.baidu.com\">°Ù¶ÈÒ»ÏÂ</a></h1>");
+	//label->setText("<h1><a href=\"https://www.baidu.com\">ç™¾åº¦ä¸€ä¸‹</a></h1>");
 	//label->setOpenExternalLinks(true);
 	//label->adjustSize();
 
@@ -119,32 +119,92 @@ void QLabelTest::setMovieTest()
 
 }
 
-QlineEditTest::QlineEditTest(QWidget* parent):QMainWindow(parent)
+QLineEditTest::QLineEditTest(QWidget* parent):QMainWindow(parent)
 {
-	//´´½¨Ò»¸öQLineEdit
+	//åˆ›å»ºä¸€ä¸ªQLineEdit
 	QLineEdit* lineEdit = new QLineEdit(this);
 	lineEdit->setPlaceholderText("please input text...");
 
-	//´´½¨Ò»¸ö°´Å¥
+	//åˆ›å»ºä¸€ä¸ªæŒ‰é’®
 	QPushButton* button = new QPushButton("get text", this);
 
-	//´´½¨²¼¾Ö²¢Ìí¼Ó¿Ø¼ş
+	//åˆ›å»ºå¸ƒå±€å¹¶æ·»åŠ æ§ä»¶
 	QGridLayout* layout = new QGridLayout(this);
 	layout->addWidget(lineEdit,0,0);
 	layout->addWidget(button,1,0);
 
-	// ÉèÖÃ²¼¾ÖµÄ¼ä¾àºÍ±ß¾à
-	layout->setSpacing(10);  // ¿Ø¼şÖ®¼äµÄ¼ä¾à
-	layout->setContentsMargins(10, 10, 10, 10);  // ÉèÖÃ²¼¾ÖËÄÖÜµÄ±ß¾à
+	// è®¾ç½®å¸ƒå±€çš„é—´è·å’Œè¾¹è·
+	layout->setSpacing(10);  // æ§ä»¶ä¹‹é—´çš„é—´è·
+	layout->setContentsMargins(10, 10, 10, 10);  // è®¾ç½®å¸ƒå±€å››å‘¨çš„è¾¹è·
 
-	// ÉèÖÃ´°¿ÚµÄÖĞÑë²¼¾Ö
+	// è®¾ç½®çª—å£çš„ä¸­å¤®å¸ƒå±€
 	QWidget* centralWidget = new QWidget(this);
 	centralWidget->setLayout(layout);
 	setCentralWidget(centralWidget);
 
-	//µ±°´Å¥±»µã»÷Ê±»ñÈ¡QLineEditÖĞµÄÎÄ±¾
+	//å½“æŒ‰é’®è¢«ç‚¹å‡»æ—¶è·å–QLineEditä¸­çš„æ–‡æœ¬
 	connect(button, &QPushButton::clicked, this, [lineEdit]() {
-		QString text = lineEdit->text();//»ñÈ¡ÊäÈëµÄÎÄ±¾
+		QString text = lineEdit->text();//è·å–è¾“å…¥çš„æ–‡æœ¬
 		qDebug() << "output:" << text;
 		});
 }
+
+SmallWidget::SmallWidget(QWidget* parent):QWidget(parent)
+{
+	//è®²ç»„ä»¶æ”¾åˆ°çˆ¶çª—å£parent
+	spin = new QSpinBox(this);
+	slider = new QSlider(Qt::Horizontal, this);
+
+	//åˆ›å»ºå¸ƒå±€å˜é‡
+	QHBoxLayout* layout = new QHBoxLayout;
+
+	//å°†æ§ä»¶æ·»åŠ åˆ°å¸ƒå±€ä¸­
+	layout->addWidget(spin);
+	layout->addWidget(slider);
+
+	//å°†å¸ƒå±€æ·»åŠ åˆ°çª—å£ä¸­
+	setLayout(layout);
+
+	connect(spin,
+		static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+		slider, &QSlider::setValue);
+
+	connect(slider, &QSlider::valueChanged,
+		spin, &QSpinBox::setValue);
+
+
+}
+
+
+EventTest::EventTest()
+{
+
+}
+
+EventTest::EventTest(QWidget* parent)
+{
+	setMouseTracking(true);  // å¯ç”¨é¼ æ ‡è¿½è¸ª
+}
+
+void EventTest::mouseMoveEvent(QMouseEvent* event)
+{
+	QPointF pos = event->position();  // è·å–é¼ æ ‡ä½ç½®
+	this->setText(QString("<center><h1>Move:(%1,%2)</h1></center>").
+		arg(pos.x()).arg(pos.y()));
+}
+
+void EventTest::mousePressEvent(QMouseEvent* event)
+{
+	QPointF pos = event->position();  // è·å–é¼ æ ‡ä½ç½®
+	this->setText(QString("<center><h1>Press:(%1,%2)</h1></center>").
+		arg(pos.x()).arg(pos.y()));
+}
+
+void EventTest::mouseReleaseEvent(QMouseEvent* event)
+{
+	QPointF pos = event->position();  // è·å–é¼ æ ‡ä½ç½®
+	QString msg = QString("Mouse released at position (%1, %2)").
+		arg(pos.x()).arg(pos.y());
+	this->setText(msg);
+}
+
