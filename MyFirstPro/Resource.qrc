@@ -4,6 +4,8 @@
         <file>C:/Users/senlz/Pictures/icon/open.svg</file>
         <file>C:/Users/senlz/Pictures/icon/paste.svg</file>
         <file>C:/Users/senlz/Pictures/icon/happyFruit.png</file>
+        <file alias="textEdit">C:/Users/senlz/Pictures/icon/textEdit.png</file>
+        <file alias="new">C:/Users/senlz/Pictures/icon/new.png</file>
     </qresource>
     <qresource prefix="/images">
         <file alias="file-open.png">C:/Users/senlz/Pictures/icon/file-open.png</file>

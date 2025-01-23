@@ -22,6 +22,9 @@
 #include <QSlider>
 #include <QPointF>
 #include <QPainter>
+#include <QMenuBar>
+#include <QFileDialog>
+#include <QTextEdit>
 
 
 
@@ -160,19 +163,63 @@ class EventDistributeFunctionTest:public QWidget
 public:
 	EventDistributeFunctionTest(QWidget* parent = nullptr);
 protected:
+	/*
+	事件分发
+	1.在 event() 中处理不同事件类型
+	2.拦截并修改鼠标事件
+	3.拦截键盘按下事件
+	*/
 	bool event(QEvent* event)override;
+
+	
+
+
 };
 
+//9.4事件过滤器的使用
+/*
+基本步骤
+1.创建一个事件过滤器（重写eventFilter）
+2.安装事件过滤器installEventFilter
+3.事件处理eventFilter
+*/
+
+class EventFilterTest :public QObject
+{
+	Q_OBJECT
+
+public:
+	EventFilterTest();
+	bool eventFilter(QObject* obj, QEvent* event)override;
+
+private:
+
+};
+
+/*
+简单文本编辑器
+	目标：使用QMainWindow来创建一个基本的文本编辑器，具有菜单栏、工具栏、状态栏等。
+涉及知识点：
+	信号与槽：处理菜单栏项选择（如新建、打开、保存等）。
+	QMainWindow：搭建应用程序的框架。
+	QDialog：使用文件对话框来打开和保存文件。
+	QLabel、QLineEdit：用于显示文件路径和文本编辑。
+*/
 
 
-
-
-
-
-
-
-
-
+class TextEdit:public QMainWindow
+{
+	Q_OBJECT
+public:
+	TextEdit(QWidget *parent = nullptr);
+	
+	void runTest();
+	void openFile();
+	void saveFile();
+public:
+	QTextEdit* textEdit;
+	
+};
 
 
 

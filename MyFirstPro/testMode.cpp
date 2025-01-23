@@ -215,21 +215,32 @@ EventDistributeFunctionTest::EventDistributeFunctionTest(QWidget* parent):QWidge
 
 bool EventDistributeFunctionTest::event(QEvent* event)
 {
-	//处理鼠标按下事件
+
+	//3 键盘按下事件
+	if (event->type() == QEvent::KeyPress) {
+		QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
+		if (keyEvent->key() == Qt::Key_Space) {
+			qDebug() << "空格键按下";
+			return true;
+		}
+
+	}
+
+	//1.1处理鼠标按下事件
 	if (event->type() == QEvent::MouseButtonPress) {
 		QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
 		qDebug() << "鼠标被按下：" << mouseEvent->pos();
 		return true;
 	}
 
-	//处理键盘按下事件
+	//1.2处理键盘按下事件
 	if (event->type() == QEvent::KeyPress) {
 		QKeyEvent* keyEvent = static_cast<QKeyEvent*>(event);
 		qDebug() << "键盘被按下" << keyEvent->text();
 		return true;
 	}
 
-	//处理绘制事件
+	//1.3处理绘制事件
 	if (event->type() == QEvent::Paint) {
 		QPaintEvent* paintEvent = static_cast<QPaintEvent*>(event);
 		QPainter painter(this);
@@ -238,6 +249,95 @@ bool EventDistributeFunctionTest::event(QEvent* event)
 		return true;//返回true，表示事件已经被处理
 	}
 
+	//2 拦截修改鼠标事件
+	if (event->type() == QEvent::MouseButtonPress) {
+		QMouseEvent* mouseEvent = static_cast<QMouseEvent*>(event);
+		qDebug() << "鼠标按下" << mouseEvent->pos();
+		return true;
+	}
+
+
 	//如果事件没有被处理，交给基类处理
 	return QWidget::event(event);
+}
+
+EventFilterTest::EventFilterTest()
+{
+}
+
+bool EventFilterTest::eventFilter(QObject *watched, QEvent *event)
+{
+	if (event->type() == QEvent::KeyPress)
+	{
+		QKeyEvent *keyEvent = static_cast <QKeyEvent *>(event);
+		if (keyEvent->key() == Qt::Key_Enter) {
+				qDebug() << "Enter key pressed!";
+				return true;
+			}
+	}
+	return QObject::eventFilter(watched,event);
+}
+
+TextEdit::TextEdit(QWidget* parent):QMainWindow(parent)
+{
+	textEdit = new QTextEdit(this);
+}
+
+void TextEdit::runTest()
+{
+	//一、创建主窗口框架
+	//1.创建中心部件和基本的菜单栏框架
+	
+	QWidget* centralWidget = new QWidget(this);
+	QVBoxLayout* layout = new QVBoxLayout(centralWidget);
+
+	setCentralWidget(centralWidget);
+	setWindowTitle("文本剪辑器");
+	layout->addWidget(textEdit);
+
+	setWindowIcon(QIcon(":/icons/textEdit"));
+	resize(600, 400); // 设置窗口大小
+
+	QMenuBar* menuBar = this->menuBar();
+	QMenu* fileMenu = menuBar->addMenu("File");
+	
+
+	QAction* openAction = new QAction(QIcon(":/images/file-open.png"), "打开", this);
+	fileMenu->addAction(openAction);
+	//连接槽函数
+	connect(openAction, &QAction::triggered, this, &TextEdit::openFile);
+
+	QAction* saveAction = new QAction(QIcon(":/images/file-save.png"), "保存", this);
+	fileMenu->addAction(saveAction);
+
+	//2.菜单栏功能实现
+
+
+
+}
+
+void TextEdit::openFile()
+{
+	QString path = QFileDialog::getOpenFileName(this, "打开文件", "", "TextFiles(*.txt);;All Files(*)");
+	if (!path.isEmpty()) {
+		QFile file(path);
+		if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+			QMessageBox::warning(this,"警告", tr("找不到该文件").arg(path));
+			return;
+		}
+		QTextStream in(&file);
+		textEdit->setText(in.readAll());
+		file.close();
+
+	}
+	else
+	{
+		QMessageBox::warning(this, tr("path"),
+			tr("You did not select any file."));
+
+	}
+}
+
+void TextEdit::saveFile()
+{
 }
