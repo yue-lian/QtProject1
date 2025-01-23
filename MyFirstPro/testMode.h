@@ -212,10 +212,12 @@ class TextEdit:public QMainWindow
 	Q_OBJECT
 public:
 	TextEdit(QWidget *parent = nullptr);
-	
 	void runTest();
+
+public slots:
 	void openFile();
 	void saveFile();
+	void newFile();
 public:
 	QTextEdit* textEdit;
 	

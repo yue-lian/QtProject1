@@ -286,31 +286,36 @@ TextEdit::TextEdit(QWidget* parent):QMainWindow(parent)
 void TextEdit::runTest()
 {
 	//一、创建主窗口框架
-	//1.创建中心部件和基本的菜单栏框架
-	
+	//1.创建菜单栏
+	QMenuBar* menuBar = this->menuBar();
+	QMenu* fileMenu = menuBar->addMenu("文件");
+
+	//创建菜单项
+	QAction* openAction = new QAction(QIcon(":/images/file-open.png"), "打开", this);
+	fileMenu->addAction(openAction);
+	QAction* saveAction = new QAction(QIcon(":/images/file-save.png"), "保存", this);
+	fileMenu->addAction(saveAction);
+	QAction* newAction = new QAction(QIcon(":/images/file-open.png"), "新建", this);
+	fileMenu->addAction(openAction);
+
+	//2.创建中心部件和布局
 	QWidget* centralWidget = new QWidget(this);
 	QVBoxLayout* layout = new QVBoxLayout(centralWidget);
 
-	setCentralWidget(centralWidget);
-	setWindowTitle("文本剪辑器");
+	textEdit = new QTextEdit(this);
 	layout->addWidget(textEdit);
 
+	setCentralWidget(centralWidget);
+
+	//设置窗口标题和图标
+	setWindowTitle("文本剪辑器");
 	setWindowIcon(QIcon(":/icons/textEdit"));
 	resize(600, 400); // 设置窗口大小
 
-	QMenuBar* menuBar = this->menuBar();
-	QMenu* fileMenu = menuBar->addMenu("File");
-	
-
-	QAction* openAction = new QAction(QIcon(":/images/file-open.png"), "打开", this);
-	fileMenu->addAction(openAction);
-	//连接槽函数
+	//3.菜单栏功能实现
 	connect(openAction, &QAction::triggered, this, &TextEdit::openFile);
-
-	QAction* saveAction = new QAction(QIcon(":/images/file-save.png"), "保存", this);
-	fileMenu->addAction(saveAction);
-
-	//2.菜单栏功能实现
+	connect(saveAction, &QAction::triggered, this, &TextEdit::saveFile);
+	connect(newAction, &QAction::triggered, this, &TextEdit::newFile);
 
 
 
@@ -328,7 +333,9 @@ void TextEdit::openFile()
 		QTextStream in(&file);
 		textEdit->setText(in.readAll());
 		file.close();
-
+		//更新窗口标题，显示文件名
+		QFileInfo fileInfo(file);
+		setWindowTitle(tr("文本编辑器 - %1").arg(fileInfo.fileName()));
 	}
 	else
 	{
@@ -338,6 +345,37 @@ void TextEdit::openFile()
 	}
 }
 
+
+
 void TextEdit::saveFile()
 {
+	QString path = QFileDialog::getSaveFileName(this, "保存文件", "", "Text Files(*.txt);;All Files(*)");
+	if (!path.isEmpty())
+	{
+		//如果没有选择文件后缀，自动加上(.txt)后缀
+		if (!path.endsWith(".txt",Qt::CaseInsensitive))
+		{
+			path += ".txt";
+		}
+
+		QFile file(path);
+		if (!file.open(QIODevice::WriteOnly|QIODevice::Text))
+		{
+			QMessageBox::warning(this, "警告", tr("无法保存该文件：%1").arg(path));
+			return;
+		}
+
+		QTextStream out(&file);
+		//写入文本框内容
+		out << textEdit->toPlainText();
+		file.close();
+
+		//保存文件后的提示
+		QMessageBox::information(this, "保存成功", tr("保存地址：%1").arg(path));
+	}
+}
+
+void TextEdit::newFile()
+{
+
 }
