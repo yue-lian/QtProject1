@@ -287,7 +287,7 @@ void TextEdit::runTest()
 {
 	//一、创建主窗口框架
 	//1.创建菜单栏
-	QMenuBar* menuBar = this->menuBar();
+	QMenuBar* menuBar = this->QMainWindow::menuBar();
 	QMenu* fileMenu = menuBar->addMenu("文件");
 
 	//创建菜单项
@@ -295,17 +295,18 @@ void TextEdit::runTest()
 	fileMenu->addAction(openAction);
 	QAction* saveAction = new QAction(QIcon(":/images/file-save.png"), "保存", this);
 	fileMenu->addAction(saveAction);
-	QAction* newAction = new QAction(QIcon(":/images/file-open.png"), "新建", this);
-	fileMenu->addAction(openAction);
+	QAction* newAction = new QAction(QIcon(":/images/file-new"), "新建", this);
+	fileMenu->addAction(newAction);
 
 	//2.创建中心部件和布局
 	QWidget* centralWidget = new QWidget(this);
 	QVBoxLayout* layout = new QVBoxLayout(centralWidget);
 
-	textEdit = new QTextEdit(this);
+	setCentralWidget(centralWidget);
+
 	layout->addWidget(textEdit);
 
-	setCentralWidget(centralWidget);
+	
 
 	//设置窗口标题和图标
 	setWindowTitle("文本剪辑器");
@@ -377,5 +378,19 @@ void TextEdit::saveFile()
 
 void TextEdit::newFile()
 {
-
+	if (!textEdit->toPlainText().isEmpty())
+	{
+		QMessageBox::StandardButtons reply;
+		reply = QMessageBox::question(this, "新建文件", "当前文件尚未保存，是否保存？",
+			QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+		if (reply == QMessageBox::Yes) {
+			saveFile();//保存文件
+		}
+		else if (reply == QMessageBox::Cancel) {
+			return;//取消新建操作
+		}
+	}
+	//清空文本编辑器内容
+	textEdit->clear();
+	setWindowTitle("新建文件--未保存");
 }
