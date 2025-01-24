@@ -25,6 +25,10 @@
 #include <QMenuBar>
 #include <QFileDialog>
 #include <QTextEdit>
+#include <QTimer>
+#include <QToolBar>
+#include <QStatusBar>
+#include <QDateTime>
 
 
 
@@ -220,6 +224,7 @@ public slots:
 	void newFile();
 public:
 	QTextEdit* textEdit;
+	QString currentFilePath;  // 记录当前文件路径
 	
 };
 

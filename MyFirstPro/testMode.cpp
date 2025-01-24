@@ -151,7 +151,7 @@ QLineEditTest::QLineEditTest(QWidget* parent):QMainWindow(parent)
 
 SmallWidget::SmallWidget(QWidget* parent):QWidget(parent)
 {
-	//讲组件放到父窗口parent
+	//将组件放到父窗口parent
 	spin = new QSpinBox(this);
 	slider = new QSlider(Qt::Horizontal, this);
 
@@ -281,6 +281,7 @@ bool EventFilterTest::eventFilter(QObject *watched, QEvent *event)
 TextEdit::TextEdit(QWidget* parent):QMainWindow(parent)
 {
 	textEdit = new QTextEdit(this);
+	currentFilePath = "";
 }
 
 void TextEdit::runTest()
@@ -297,6 +298,16 @@ void TextEdit::runTest()
 	fileMenu->addAction(saveAction);
 	QAction* newAction = new QAction(QIcon(":/images/file-new"), "新建", this);
 	fileMenu->addAction(newAction);
+
+	//创建工具栏
+	QToolBar* toolBar = this->addToolBar("tool");
+	toolBar->setAllowedAreas(Qt::LeftToolBarArea | Qt::TopToolBarArea);
+	toolBar->addAction(newAction );
+	toolBar->addAction(openAction );
+	toolBar->addAction(saveAction );
+
+
+	//创建状态栏
 
 	//2.创建中心部件和布局
 	QWidget* centralWidget = new QWidget(this);
@@ -324,6 +335,18 @@ void TextEdit::runTest()
 
 void TextEdit::openFile()
 {
+	if (!textEdit->toPlainText().isEmpty())
+	{
+		QMessageBox::StandardButtons reply;
+		reply = QMessageBox::question(this, "新建文件", "当前文件尚未保存，是否保存？",
+			QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+		if (reply == QMessageBox::Yes) {
+			saveFile();//保存文件
+		}
+		else if (reply == QMessageBox::Cancel) {
+			return;//取消新建操作
+		}
+	}
 	QString path = QFileDialog::getOpenFileName(this, "打开文件", "", "TextFiles(*.txt);;All Files(*)");
 	if (!path.isEmpty()) {
 		QFile file(path);
@@ -337,6 +360,8 @@ void TextEdit::openFile()
 		//更新窗口标题，显示文件名
 		QFileInfo fileInfo(file);
 		setWindowTitle(tr("文本编辑器 - %1").arg(fileInfo.fileName()));
+
+		currentFilePath = path;
 	}
 	else
 	{
@@ -350,30 +375,48 @@ void TextEdit::openFile()
 
 void TextEdit::saveFile()
 {
-	QString path = QFileDialog::getSaveFileName(this, "保存文件", "", "Text Files(*.txt);;All Files(*)");
-	if (!path.isEmpty())
+	QString path;
+	if (currentFilePath.isEmpty())
 	{
-		//如果没有选择文件后缀，自动加上(.txt)后缀
-		if (!path.endsWith(".txt",Qt::CaseInsensitive))
-		{
-			path += ".txt";
-		}
+		path = QFileDialog::getSaveFileName(this, "保存文件", "", "Text Files(*.txt);;All files(*)");
 
-		QFile file(path);
-		if (!file.open(QIODevice::WriteOnly|QIODevice::Text))
-		{
-			QMessageBox::warning(this, "警告", tr("无法保存该文件：%1").arg(path));
+		//取消操作
+		if (path.isEmpty()) {
 			return;
 		}
 
-		QTextStream out(&file);
-		//写入文本框内容
-		out << textEdit->toPlainText();
-		file.close();
-
-		//保存文件后的提示
-		QMessageBox::information(this, "保存成功", tr("保存地址：%1").arg(path));
+		if (!path.endsWith(".txt", Qt::CaseInsensitive))
+		{
+			path += ".txt";
+		}
 	}
+	else
+	{
+		path = currentFilePath;
+	}
+
+	QFile file(path);
+	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+	{
+		QMessageBox::warning(this, "警告", tr("无法保存该文件：%1").arg(path));
+		return;
+	}
+
+
+	QTextStream out(&file);
+	//写入文本框内容
+	out << textEdit->toPlainText();
+	file.close();
+
+	currentFilePath = path;
+
+	// 获取当前时间
+	QString currentTime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
+
+	//保存完成后提示
+	statusBar()->showMessage(tr("保存完成：%1[%2]").arg(path).arg(currentTime));  
+
+
 }
 
 void TextEdit::newFile()
@@ -393,4 +436,5 @@ void TextEdit::newFile()
 	//清空文本编辑器内容
 	textEdit->clear();
 	setWindowTitle("新建文件--未保存");
+
 }
