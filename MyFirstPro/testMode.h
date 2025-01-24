@@ -217,10 +217,10 @@ class TextEdit:public QMainWindow
 public:
 	TextEdit(QWidget *parent = nullptr);
 	void runTest();
-
+	bool confirmSave();
 public slots:
 	void openFile();
-	void saveFile();
+	bool saveFile();
 	void newFile();
 public:
 	QTextEdit* textEdit;

@@ -333,19 +333,28 @@ void TextEdit::runTest()
 
 }
 
-void TextEdit::openFile()
+bool TextEdit::confirmSave()
 {
 	if (!textEdit->toPlainText().isEmpty())
 	{
 		QMessageBox::StandardButtons reply;
-		reply = QMessageBox::question(this, "新建文件", "当前文件尚未保存，是否保存？",
+		reply = QMessageBox::question(this, "保存更改", "当前文件未保存,是否保存？",
 			QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-		if (reply == QMessageBox::Yes) {
-			saveFile();//保存文件
+		if (reply == QMessageBox::Yes){
+			return saveFile();//返回保存结果
 		}
 		else if (reply == QMessageBox::Cancel) {
-			return;//取消新建操作
+			return false;//取消操作
 		}
+	}
+	return true;//无需再保存
+}
+
+void TextEdit::openFile()
+{
+	if (!confirmSave())
+	{
+		return;//用户取消保存，则中断操作
 	}
 	QString path = QFileDialog::getOpenFileName(this, "打开文件", "", "TextFiles(*.txt);;All Files(*)");
 	if (!path.isEmpty()) {
@@ -373,7 +382,7 @@ void TextEdit::openFile()
 
 
 
-void TextEdit::saveFile()
+bool TextEdit::saveFile()
 {
 	QString path;
 	if (currentFilePath.isEmpty())
@@ -382,7 +391,7 @@ void TextEdit::saveFile()
 
 		//取消操作
 		if (path.isEmpty()) {
-			return;
+			return false;
 		}
 
 		if (!path.endsWith(".txt", Qt::CaseInsensitive))
@@ -390,8 +399,7 @@ void TextEdit::saveFile()
 			path += ".txt";
 		}
 	}
-	else
-	{
+	else{
 		path = currentFilePath;
 	}
 
@@ -399,7 +407,7 @@ void TextEdit::saveFile()
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
 	{
 		QMessageBox::warning(this, "警告", tr("无法保存该文件：%1").arg(path));
-		return;
+		return false;
 	}
 
 
@@ -416,22 +424,15 @@ void TextEdit::saveFile()
 	//保存完成后提示
 	statusBar()->showMessage(tr("保存完成：%1[%2]").arg(path).arg(currentTime));  
 
+	return true;
 
 }
 
 void TextEdit::newFile()
 {
-	if (!textEdit->toPlainText().isEmpty())
+	if (!confirmSave())
 	{
-		QMessageBox::StandardButtons reply;
-		reply = QMessageBox::question(this, "新建文件", "当前文件尚未保存，是否保存？",
-			QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-		if (reply == QMessageBox::Yes) {
-			saveFile();//保存文件
-		}
-		else if (reply == QMessageBox::Cancel) {
-			return;//取消新建操作
-		}
+		return;
 	}
 	//清空文本编辑器内容
 	textEdit->clear();
