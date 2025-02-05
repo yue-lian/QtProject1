@@ -29,6 +29,10 @@
 #include <QToolBar>
 #include <QStatusBar>
 #include <QDateTime>
+#include <QActionGroup>
+#include <QStringList>
+#include <QStringConverter>
+#include <QTextStream>
 
 
 
@@ -218,6 +222,15 @@ public:
 	TextEdit(QWidget *parent = nullptr);
 	void runTest();
 	bool confirmSave();
+	void closeEvent(QCloseEvent* event);
+	void updateWindowTitle();
+	//选择编码并存储
+	void setEncoding(QAction* action);
+	////读取文件时按选定编码转换
+	//void loadFile(const QString &filePath);
+	//void saveFile(const QString &filePath);
+signals:
+
 public slots:
 	void openFile();
 	bool saveFile();
@@ -225,7 +238,9 @@ public slots:
 public:
 	QTextEdit* textEdit;
 	QString currentFilePath;  // 记录当前文件路径
-	
+	bool isEdited = false;//编辑状态信号
+	QString currentEncoding = "UTF-8";  // 默认 UTF-8
+
 };
 
 

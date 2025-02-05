@@ -11,6 +11,8 @@
         <file alias="file-open.png">C:/Users/senlz/Pictures/icon/file-open.png</file>
         <file alias="file-save.png">C:/Users/senlz/Pictures/icon/file-save.png</file>
         <file alias="file-new">C:/Users/senlz/Pictures/icon/file-new.png</file>
+        <file alias="file-undo">C:/Users/senlz/Downloads/undo.png</file>
+        <file alias="file-redo">C:/Users/senlz/Downloads/redo.png</file>
     </qresource>
     <qresource prefix="/gif">
         <file alias="cat">C:/Users/senlz/Pictures/gif/cat.gif</file>
