@@ -108,7 +108,7 @@
   <ItemGroup>
     <QtRcc Include="MyFirstPro.qrc" />
     <QtUic Include="MyFirstPro.ui" />
-    <QtMoc Include="MyFirstPro.h" />
+    <ClInclude Include="MyFirstPro.h" />
     <ClCompile Include="MyFirstPro.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
